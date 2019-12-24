@@ -1,4 +1,6 @@
-﻿namespace ClipsFormsExample
+﻿using System.Runtime.InteropServices;
+
+namespace ClipsFormsExample
 {
     partial class ClipsFormsExample
     {
@@ -32,6 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.codeBox = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -44,12 +47,15 @@
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.clipsSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -58,9 +64,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.splitContainer1);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(12, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(986, 606);
+            this.panel1.Size = new System.Drawing.Size(964, 362);
             this.panel1.TabIndex = 2;
             // 
             // splitContainer1
@@ -72,12 +78,13 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.codeBox);
+            this.splitContainer1.Panel1.Controls.Add(this.panel3);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(986, 606);
-            this.splitContainer1.SplitterDistance = 463;
+            this.splitContainer1.Size = new System.Drawing.Size(964, 362);
+            this.splitContainer1.SplitterDistance = 452;
             this.splitContainer1.TabIndex = 2;
             // 
             // codeBox
@@ -88,8 +95,15 @@
             this.codeBox.Multiline = true;
             this.codeBox.Name = "codeBox";
             this.codeBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.codeBox.Size = new System.Drawing.Size(463, 606);
+            this.codeBox.Size = new System.Drawing.Size(452, 362);
             this.codeBox.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(3, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 100);
+            this.panel3.TabIndex = 8;
             // 
             // textBox1
             // 
@@ -99,8 +113,9 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(519, 606);
+            this.textBox1.Size = new System.Drawing.Size(508, 362);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // panel2
             // 
@@ -192,11 +207,39 @@
             // 
             this.openFileDialog1.FileName = "facts.txt";
             // 
+            // listBox1
+            // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(0, 17);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(964, 212);
+            this.listBox1.Sorted = true;
+            this.listBox1.TabIndex = 7;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            string[] countries = { "быстрая", "бюджетная", "вместительная", "внедорожная", "дорогая", "заднеприводная", "компактная", "мощная", "очень_дорогая", "переднеприводная", "полноприводная", "представительская", "семейная", "спортивная", "средней_ценновой_категории", "экономичная" };
+            listBox1.Items.AddRange(countries);
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.Controls.Add(this.listBox1);
+            this.panel4.Location = new System.Drawing.Point(12, 371);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(964, 229);
+            this.panel4.TabIndex = 8;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel4_Paint);
+            // 
             // ClipsFormsExample
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 660);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -211,6 +254,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -231,6 +275,9 @@
     private System.Windows.Forms.SaveFileDialog clipsSaveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
     }
 }
 

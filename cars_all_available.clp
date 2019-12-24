@@ -300,6 +300,9 @@
     (declare (salience 10))
     ?fact1 <- (экономичная)
     ?fact2 <- (купе)
+    (antonym ?antonym&~дорогая)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~очень_дорогая)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: бюджетная из экономичная, купе."))
     (assert (бюджетная))
@@ -309,6 +312,9 @@
     (declare (salience 11))
     ?fact1 <- (экономичная)
     ?fact2 <- (седан)
+    (antonym ?antonym&~дорогая)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~очень_дорогая)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: бюджетная из экономичная, седан."))
     (assert (бюджетная))
@@ -318,6 +324,9 @@
     (declare (salience 10))
     ?fact1 <- (экономичная)
     ?fact2 <- (внедорожник)
+    (antonym ?antonym&~дорогая)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~очень_дорогая)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: бюджетная из экономичная, внедорожник."))
     (assert (бюджетная))
@@ -327,6 +336,9 @@
     (declare (salience 10))
     ?fact1 <- (мощная)
     ?fact2 <- (внедорожник)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: дорогая из мощная, внедорожник."))
     (assert (дорогая))
@@ -336,6 +348,9 @@
     (declare (salience 11))
     ?fact1 <- (семейная)
     ?fact2 <- (внедорожник)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: дорогая из семейная, внедорожник."))
     (assert (дорогая))
@@ -345,6 +360,9 @@
     (declare (salience 11))
     ?fact1 <- (быстрая)
     ?fact2 <- (седан)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: дорогая из быстрая, седан."))
     (assert (дорогая))
@@ -354,6 +372,9 @@
     (declare (salience 10))
     ?fact1 <- (быстрая)
     ?fact2 <- (купе)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: дорогая из быстрая, купе."))
     (assert (дорогая))
@@ -363,6 +384,9 @@
     (declare (salience 10))
     ?fact1 <- (быстрая)
     ?fact2 <- (внедорожник)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: дорогая из быстрая, внедорожник."))
     (assert (дорогая))
@@ -372,6 +396,9 @@
     (declare (salience 10))
     ?fact1 <- (пикап)
     ?fact2 <- (мощная)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: дорогая из пикап, мощная."))
     (assert (дорогая))
@@ -381,6 +408,9 @@
     (declare (salience 10))
     ?fact1 <- (мощная)
     ?fact2 <- (купе)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: дорогая из мощная, купе."))
     (assert (дорогая))
@@ -444,6 +474,9 @@
     (declare (salience 11))
     ?fact1 <- (седан)
     ?fact2 <- (представительская)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: очень_дорогая из седан, представительская."))
     (assert (очень_дорогая))
@@ -453,6 +486,9 @@
     (declare (salience 10))
     ?fact1 <- (быстрая)
     ?fact2 <- (спорткар)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: очень_дорогая из быстрая, спорткар."))
     (assert (очень_дорогая))
@@ -462,6 +498,9 @@
     (declare (salience 10))
     ?fact1 <- (мощная)
     ?fact2 <- (спорткар)
+    (antonym ?antonym&~бюджетная)
+    (antonym ?antonym&~средней_ценновой_категории)
+    (antonym ?antonym&~экономичная)
 =>
     (assert (sendmessagehalt "Рассмотрена продукция: очень_дорогая из мощная, спорткар."))
     (assert (очень_дорогая))
@@ -787,9 +826,9 @@
 (defrule rule79
     (declare (salience 100))
     ?fact1 <- (спорткар)
-    ?fact2 <- (очень-дорогая)
+    ?fact2 <- (очень_дорогая)
 =>
-    (assert (sendmessagehalt "Рассмотрена продукция: Audi из спорткар, очень-дорогая."))
+    (assert (sendmessagehalt "Рассмотрена продукция: Audi из спорткар, очень_дорогая."))
     (assert (Audi))
 )
 

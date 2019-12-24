@@ -4,7 +4,32 @@ properties_points = {
     "средней_ценновой_категории": 1
 }
 
-retract_facts_at_final = False
+antonyms = {
+    "дорогая": [
+        "бюджетная",
+        "средней_ценновой_категории",
+        "экономичная"
+    ],
+    "бюджетная": [
+        "дорогая",
+        "средней_ценновой_категории",
+        "очень_дорогая"
+    ],
+    "экономичаня": [
+        "дорогая",
+        "очень_дорогая"
+    ],
+    "средней_ценовой_категории": [
+        "дорогая"
+    ],
+    "очень_дорогая": [
+        "бюджетная",
+        "средней_ценновой_категории",
+        "экономичная"
+    ]
+}
+
+retract_facts_at_final = True
 
 base = """
 (deftemplate ioproxy  
@@ -120,12 +145,17 @@ retract_template = "    (retract {})\n"
 
 fact_template = "    ?fact{0} <- ({1})\n"
 
+fact_not_template = "    (antonym ?antonym&~{0})\n"
+
+import numpy as np
+
 if __name__ == "__main__":
     with open("rules.txt", "r", encoding='utf-8') as file:
         rules = file.read().split("\n")
 
     clp_rules = base + next_block
     current_salience = 1
+    all_facts = []
 
     for i in range(0, len(rules)):
         rule = rules[i]
@@ -140,6 +170,7 @@ if __name__ == "__main__":
         the_make_of = ""
         fact_number = 1
         facts_variables = []
+
         for fact in facts:
             if fact != "":
                 facts_section += fact_template.format(fact_number, fact)
@@ -150,10 +181,13 @@ if __name__ == "__main__":
                     the_make_of = fact
 
                 salience_addiction += properties_points.get(fact, 0)
-
+                all_facts.append('"' + fact + '"')
                 fact_number += 1
-
         result_section = then_section
+        current_antonyms = antonyms.get(result_section, [])
+        for antonym in current_antonyms:
+            facts_section += fact_not_template.format(antonym)
+
         rule_number = i + 1
 
         if i in [24, 43, 84]:
@@ -183,4 +217,6 @@ if __name__ == "__main__":
 
     with open(output_filename, "w", encoding="utf-8") as file:
         file.write(clp_rules)
+
+    print("{", ", ".join(np.unique(all_facts)), "}")
 

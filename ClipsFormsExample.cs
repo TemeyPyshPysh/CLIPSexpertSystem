@@ -14,11 +14,12 @@ namespace ClipsFormsExample
 {
   public partial class ClipsFormsExample : Form
   {
-    private CLIPSNET.Environment clips = new CLIPSNET.Environment();
- 
+        private CLIPSNET.Environment clips = new CLIPSNET.Environment();
+        private HashSet<string> currentFacts;
     public ClipsFormsExample()
     {
-      InitializeComponent();
+            InitializeComponent();
+            currentFacts = new HashSet<string>();
     }
 
     protected override void OnLoad(EventArgs e)
@@ -42,6 +43,10 @@ namespace ClipsFormsExample
         byte[] bytes = Encoding.Default.GetBytes(da.Value);
         textBox1.Text += Encoding.UTF8.GetString(bytes) + System.Environment.NewLine;
       }
+      if (damf.Count == 0)
+            {
+                textBox1.Text += "Предоставьте больше характеристик." + System.Environment.NewLine;
+            }
 
       if (vamf.Count > 0)
       {
@@ -65,18 +70,20 @@ namespace ClipsFormsExample
 
     private void resetBtn_Click(object sender, EventArgs e)
     {
-      textBox1.Text = "Выполнены команды Clear и Reset." + System.Environment.NewLine;
-      //  Здесь сохранение в файл, и потом инициализация через него
-      clips.Clear();
+        textBox1.Text = "Выполнены команды Clear и Reset." + System.Environment.NewLine;
+        currentFacts.Clear();
+        
+        //  Здесь сохранение в файл, и потом инициализация через него
+        clips.Clear();
       
-      /*string stroka = codeBox.Text;
-      System.IO.File.WriteAllText("tmp.clp", codeBox.Text);
-      clips.Load("tmp.clp");*/
+        /*string stroka = codeBox.Text;
+        System.IO.File.WriteAllText("tmp.clp", codeBox.Text);
+        clips.Load("tmp.clp");*/
 
-      //  Так тоже можно - без промежуточного вывода в файл
-      clips.LoadFromString(codeBox.Text);
+        //  Так тоже можно - без промежуточного вывода в файл
+        clips.LoadFromString(codeBox.Text);
 
-      clips.Reset();
+        clips.Reset();
     }
 
     private void openFile_Click(object sender, EventArgs e)
@@ -108,24 +115,31 @@ namespace ClipsFormsExample
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
-                return;
-            // получаем выбранный файл
-            string filename = openFileDialog1.FileName;
-            // читаем файл в строку
-            string fileTextWithFacts = System.IO.File.ReadAllText(filename);
-
-            string[] parse_facts = fileTextWithFacts.Split('\n');
-
-            Console.WriteLine("Parsing started.");
-            for (int i = 0; i < parse_facts.Length; i++)
+            int currentIndex = this.listBox1.SelectedIndex;
+            if (currentIndex != -1)
             {
-                Console.WriteLine(parse_facts[i]);
-                string mess = String.Format("(assert({0}))", parse_facts[i]);
+                string currentFact = this.listBox1.Items[currentIndex].ToString();
+                currentFacts.Add(currentFact);                
+                textBox1.Text += $"Текущие факты: {string.Join(", ", currentFacts)}" + System.Environment.NewLine;
+                string mess = String.Format("(assert({0}))", currentFact);
                 clips.Eval(mess);
             }
         }
 
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 
